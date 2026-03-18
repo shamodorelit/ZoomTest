@@ -132,10 +132,10 @@ io.on('connection', (socket) => {
   });
 
   // ─── ADMIN MEDIA CONTROLS ──────────────────────────────────────────
-  socket.on('admin-toggle-mic', ({ meetingId, targetSocketId }) => {
+  socket.on('admin-force-mute', ({ meetingId, targetSocketId }) => {
     const participant = rooms[meetingId]?.[socket.id];
     if (!participant?.isAdmin) return;
-    io.to(targetSocketId).emit('force-toggle-mic');
+    io.to(targetSocketId).emit('force-mute');
   });
 
   socket.on('admin-toggle-camera', ({ meetingId, targetSocketId }) => {
